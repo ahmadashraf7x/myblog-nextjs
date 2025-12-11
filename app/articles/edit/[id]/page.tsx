@@ -10,7 +10,6 @@ type Article = {
   category: string;
   content: string;
 };
-
 export default function EditArticlePage() {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
@@ -20,7 +19,6 @@ export default function EditArticlePage() {
   const [category, setCategory] = useState("");
   const [content, setContent] = useState("");
 
-  // 🟣 نجيب المقال من localStorage أول ما الصفحة تفتح
   useEffect(() => {
     if (!id) return;
 
@@ -30,7 +28,6 @@ export default function EditArticlePage() {
     try {
       const parsed: Article[] = JSON.parse(stored);
       const found = parsed.find((item) => item.id === Number(id));
-
       if (found) {
         setArticle(found);
         setTitle(found.title);
@@ -42,8 +39,6 @@ export default function EditArticlePage() {
     }
   }, [id]);
 
-  
-
   function handleSave(e: FormEvent) {
     e.preventDefault();
     if (!article) return;
@@ -51,7 +46,6 @@ export default function EditArticlePage() {
     if (!title.trim() || !category.trim() || !content.trim()) {
       return;
     }
-
     const updatedArticle: Article = {
       ...article,
       title,
@@ -70,8 +64,6 @@ export default function EditArticlePage() {
       );
 
       localStorage.setItem("articles", JSON.stringify(updatedList));
-
-      // بعد الحفظ نرجّع للهوم
       router.push("/");
     } catch (err) {
       console.log("Error updating article", err);

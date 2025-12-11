@@ -2,14 +2,12 @@
 import Link from "next/link";
 import { FormEvent, useEffect, useState } from "react";
 
-// 💡 شكل المقال الواحد
 type Article = {
   id: number;
   title: string;
   category: string;
   content: string;
 };
-
 export default function Home() {
   const [articles, setArticles] = useState<Article[]>([]);
   const [title, setTitle] = useState("");
@@ -164,10 +162,7 @@ setTitle("");
             Add Article
           </button>
         </form>
-
-    
-
-
+        
         <div className="mt-6 space-y-4">
           {filteredArticles.length === 0 ? (
             <p className="text-gray-500">
@@ -194,7 +189,6 @@ setTitle("");
                   className="text-sm text-blue-600 hover:underline">
                   Read more →
                 </Link>
-
                   <Link
     href={`/articles/edit/${article.id}`}
     className="text-sm text-yellow-600 hover:text-yellow-700 font-semibold"
@@ -216,5 +210,3 @@ setTitle("");
 
   );
 }
-
-<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Inventore porro reprehenderit sint molestiae? Qui deleniti, obcaecati omnis magni enim sequi fugiat dolor, animi culpa, alias accusantium! Neque excepturi nostrum non dolores? Voluptate eveniet eaque maiores, ratione sit asperiores quam nam quisquam cupiditate eos porro doloribus nemo debitis deserunt inventore, dicta saepe quis ipsa? Culpa quas dolorem deleniti explicabo et fuga odit, officia exercitationem ullam commodi perspiciatis voluptatum alias. Corrupti minus minima, aspernatur blanditiis ad ipsam quis reiciendis quaerat tenetur voluptates et! Magni necessitatibus nihil tempore rerum id dolor molestiae, mollitia commodi distinctio aliquam suscipit dicta sapiente illo aliquid natus at.</p>

@@ -60,16 +60,16 @@ Create, read, update, delete, search, and filter articles — everything runs on
 ## 📸 Screenshots
 
 ### 🏠 Home Page  
-![Home](./public/screenshots/home.jpg)
+![Home](./public/screenshots/home.png)
 
 ### 🧾 Article Details  
-![Details](./public/screenshots/details.jpg)
+![Details](./public/screenshots/details.png)
 
 ### ✏️ Edit Article  
-![Edit](./public/screenshots/edit.jpg)
+![Edit](./public/screenshots/edit.png)
 
 ### 🗑 Empty / No Articles  
-![Empty](./public/screenshots/empty.jpg)
+![Empty](./public/screenshots/empty.png)
 
 ---
 
@@ -81,3 +81,14 @@ cd myblog-nextjs
 npm install
 npm run dev
 ```
+
+### 🌍 Live Demo 
+(Coming Soon)
+
+Will be deployed on Vercel.
+
+### 📌 Author
+**Ahmad Ashraf**
+
+Front-End Developer
+
