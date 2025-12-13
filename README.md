@@ -1,11 +1,10 @@
 # 📝 MyBlog — Simple CRUD Blog with Next.js
 
-![Status](https://img.shields.io/badge/Status-Completed-brightgreen)
-![Built with](https://img.shields.io/badge/Built%20With-Next.js%2016.0.6-blue)
+![Next.js](https://img.shields.io/badge/Next.js-000?logo=next.js&logoColor=fff)
 ![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB)
-![TypeScript](https://img.shields.io/badge/TypeScript-Strict-blue)
-![TailwindCSS](https://img.shields.io/badge/Style-TailwindCSS-38B2AC)
-![LocalStorage](https://img.shields.io/badge/Storage-localStorage-yellow)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff)
+![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?logo=tailwind-css&logoColor=white)
+![Vercel](https://img.shields.io/badge/Deployed-Vercel-black?logo=vercel)
 
 A clean and simple **CRUD Blog App** built using **Next.js 16 (App Router)**,  
 **React**, **TypeScript**, and **Tailwind CSS** — fully stored in the browser using `localStorage`.
@@ -48,7 +47,7 @@ Create, read, update, delete, search, and filter articles — everything runs on
 ---
 
 ## 🛠 Tech Stack
-- **Next.js 16.0.6 (App Router)**
+- **Next.js 16.0.7 (App Router)**
 - **React**
 - **TypeScript**
 - **Tailwind CSS**
@@ -83,9 +82,8 @@ npm run dev
 ```
 
 ### 🌍 Live Demo 
-(Coming Soon)
 
-Will be deployed on Vercel.
+🚀 https://myblog-nextjs-psi.vercel.app 
 
 ### 📌 Author
 **Ahmad Ashraf**
