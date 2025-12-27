@@ -1,0 +1,48 @@
+import { Article } from "@/app/types/article";
+export function getArticles(): Article[] {
+    const stored = localStorage.getItem("articles");
+    if (!stored) {
+        return [];
+    }
+    try {
+        return JSON.parse(stored);
+    } catch {
+        return [];
+    }
+}
+
+export function addArticle(article: Article): Article[] {
+    const articles = getArticles();
+    const updated = [...articles, article];
+
+    localStorage.setItem("articles", JSON.stringify(updated));
+
+    return updated;
+}
+
+export function deleteArticle(id: number): Article[] {
+    const articles = getArticles();
+
+    const updated = articles.filter((article) => article.id !== id);
+
+    localStorage.setItem("articles", JSON.stringify(updated));
+
+    return updated;
+}
+
+export function getArticleById(id: number): Article | null {
+    const articles = getArticles();
+    return articles.find((article) => article.id === id) || null;
+}
+
+export function updateArticle(updatedArticle: Article): Article[] {
+    const articles = getArticles();
+
+    const updatedList = articles.map((article) =>
+        article.id === updatedArticle.id ? updatedArticle : article
+    );
+
+    localStorage.setItem("articles", JSON.stringify(updatedList));
+
+    return updatedList;
+}
