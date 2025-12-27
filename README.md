@@ -6,10 +6,14 @@
 ![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?logo=tailwind-css&logoColor=white)
 ![Vercel](https://img.shields.io/badge/Deployed-Vercel-black?logo=vercel)
 
-A clean and simple **CRUD Blog App** built using **Next.js 16 (App Router)**,  
-**React**, **TypeScript**, and **Tailwind CSS** — fully stored in the browser using `localStorage`.
-
-Create, read, update, delete, search, and filter articles — everything runs on the client side.
+A clean and simple **CRUD Blog App** built using **Next.js (App Router)**,  
+**React**, **TypeScript**, and **Tailwind CSS** .
+The application implements full CRUD functionality on the client side,
+with all data persisted in the browser using localStorage (no backend).
+Users can create, read, update, delete, search, and filter articles instantly
+without any server interaction.
+Despite its simplicity, the project emphasizes clean separation between UI components
+and data-handling logic to improve readability and maintainability.
 
 ---
 
@@ -46,13 +50,49 @@ Create, read, update, delete, search, and filter articles — everything runs on
 
 ---
 
+## 🗂 Project Structure & Architecture
+
+The project follows the **Next.js App Router** pattern with a clear separation of concerns.
+
+- `app/`  
+  - Page routes and layouts using the App Router.
+  - Each route handles UI and page-specific state only.
+
+- `app/articles/[id]`  
+  - Displays full article details.
+
+- `app/articles/edit/[id]`  
+  - Handles article editing with pre-filled form data.
+
+- `lib/articles.ts`  
+  - Centralized business logic for:
+    - Reading articles from `localStorage`
+    - Creating new articles
+    - Updating existing articles
+    - Deleting articles
+  - Keeps storage logic out of UI components.
+
+- `types/article.ts`  
+  - Shared TypeScript type definitions used across the app.
+  - Ensures type safety and consistency.
+
+### Architectural Decisions
+
+- Business logic is extracted into reusable utility functions instead of being duplicated inside pages.
+- UI components focus only on rendering and user interaction.
+- Types are centralized to avoid duplication and improve maintainability.
+- The app avoids unnecessary abstraction to stay simple and readable.
+
+This structure improves readability, scalability, and makes the project easy to reason about during maintenance or future expansion.
+
+---
+
 ## 🛠 Tech Stack
-- **Next.js 16.0.7 (App Router)**
+- **Next.js**
 - **React**
 - **TypeScript**
 - **Tailwind CSS**
 - **localStorage API**
-- 100% client-side CRUD logic
 
 ---
 
