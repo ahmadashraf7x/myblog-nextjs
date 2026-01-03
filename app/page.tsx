@@ -38,17 +38,7 @@ export default function Home() {
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
 
-    if (!title.trim() || !category.trim() || !content.trim()) {
-      return;
-    }
-
-    const newArticle: Article = {
-      id: Date.now(),
-      title,
-      category,
-      content,
-    };
-    const updatedArticles = addArticle(newArticle);
+    const updatedArticles = addArticle(title, category, content);
     setArticles(updatedArticles);
 
     setTitle("");
