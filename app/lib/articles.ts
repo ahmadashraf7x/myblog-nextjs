@@ -11,14 +11,30 @@ export function getArticles(): Article[] {
     }
 }
 
-export function addArticle(article: Article): Article[] {
+export function addArticle(
+    title: string,
+    category: string,
+    content: string
+): Article[] {
+    if (!title.trim() || !category.trim() || !content.trim()) {
+        return getArticles();
+    }
+
+    const newArticle: Article = {
+        id: Date.now(),
+        title: title.trim(),
+        category: category.trim(),
+        content: content.trim(),
+    };
+
     const articles = getArticles();
-    const updated = [...articles, article];
+    const updated = [...articles, newArticle];
 
     localStorage.setItem("articles", JSON.stringify(updated));
 
     return updated;
 }
+
 
 export function deleteArticle(id: number): Article[] {
     const articles = getArticles();
