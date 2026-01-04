@@ -51,14 +51,30 @@ export function getArticleById(id: number): Article | null {
     return articles.find((article) => article.id === id) || null;
 }
 
-export function updateArticle(updatedArticle: Article): Article[] {
+export function updateArticle(
+    id: number,
+    title: string,
+    category: string,
+    content: string
+): Article[] {
+    if (!title.trim() || !category.trim() || !content.trim()) {
+        return getArticles();
+    }
+
     const articles = getArticles();
 
     const updatedList = articles.map((article) =>
-        article.id === updatedArticle.id ? updatedArticle : article
+        article.id === id
+            ? {
+                ...article,
+                title: title.trim(),
+                category: category.trim(),
+                content: content.trim(),
+            }
+            : article
     );
 
     localStorage.setItem("articles", JSON.stringify(updatedList));
-
     return updatedList;
 }
+
