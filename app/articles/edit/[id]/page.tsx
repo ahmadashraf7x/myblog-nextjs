@@ -36,17 +36,7 @@ export default function EditArticlePage() {
     e.preventDefault();
     if (!article) return;
 
-    if (!title.trim() || !category.trim() || !content.trim()) {
-      return;
-    }
-    const updatedArticle: Article = {
-      ...article,
-      title,
-      category,
-      content,
-    };
-
-    updateArticle(updatedArticle);
+    updateArticle(article.id, title, category, content);
     router.push("/");
   }
 
