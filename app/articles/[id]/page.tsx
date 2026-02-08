@@ -2,18 +2,17 @@
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { getArticleById, } from "@/app/lib/articles";
 import { Article } from "@/app/types/article";
+import { useArticles } from "@/app/context/ArticlesContext";
 
 export default function ArticleDetailsPage() {
+  const { articles } = useArticles();
   const { id } = useParams<{ id: string }>();
-  const [article, setArticle] = useState<Article | null>(null);
 
-  useEffect(() => {
-    if (!id) return;
-    const found = getArticleById(Number(id));
-    setArticle(found);
-  }, [id]);
+  const article =
+    articles.find(a => a.id === Number(id)) || null;
+
+
 
   if (!article) {
     return (

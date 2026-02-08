@@ -2,19 +2,20 @@
 import Link from "next/link";
 import { FormEvent, useEffect, useState } from "react";
 import { Article } from "@/app/types/article";
-import { getArticles, addArticle, deleteArticle } from "@/app/lib/articles";
+import { addArticle, deleteArticle } from "@/app/lib/articles";
+import { useArticles } from "@/app/context/ArticlesContext";
+
 
 export default function Home() {
-  const [articles, setArticles] = useState<Article[]>([]);
+  const { articles, setArticles } = useArticles();
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [content, setContent] = useState("");
   const [search, setSearch] = useState("");
   const [filterCategory, setFilterCategory] = useState("all");
-  useEffect(() => {
-    const data = getArticles();
-    setArticles(data);
-  }, []);
+
+
+
   const categoryOptions = Array.from(
     new Set(
       articles
@@ -37,18 +38,20 @@ export default function Home() {
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
+    const updated = addArticle(articles, title, category, content);
+    if (updated.length === articles.length) {
+      return;
+    }
 
-    const updatedArticles = addArticle(title, category, content);
-    setArticles(updatedArticles);
-
+    setArticles(updated);
     setTitle("");
     setCategory("");
     setContent("");
   }
 
+
   function handleDelete(id: number) {
-    const updatedArticles = deleteArticle(id);
-    setArticles(updatedArticles);
+    setArticles((prevArticles) => deleteArticle(prevArticles, id));
   }
 
 
