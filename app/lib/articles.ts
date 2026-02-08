@@ -1,23 +1,13 @@
 import { Article } from "@/app/types/article";
-export function getArticles(): Article[] {
-    const stored = localStorage.getItem("articles");
-    if (!stored) {
-        return [];
-    }
-    try {
-        return JSON.parse(stored);
-    } catch {
-        return [];
-    }
-}
 
 export function addArticle(
+    articles: Article[],
     title: string,
     category: string,
     content: string
 ): Article[] {
     if (!title.trim() || !category.trim() || !content.trim()) {
-        return getArticles();
+        return articles
     }
 
     const newArticle: Article = {
@@ -27,41 +17,29 @@ export function addArticle(
         content: content.trim(),
     };
 
-    const articles = getArticles();
     const updated = [...articles, newArticle];
 
-    localStorage.setItem("articles", JSON.stringify(updated));
-
-    return updated;
+    return updated
 }
 
 
-export function deleteArticle(id: number): Article[] {
-    const articles = getArticles();
+export function deleteArticle(articles: Article[], id: number): Article[] {
 
     const updated = articles.filter((article) => article.id !== id);
-
-    localStorage.setItem("articles", JSON.stringify(updated));
-
     return updated;
 }
 
-export function getArticleById(id: number): Article | null {
-    const articles = getArticles();
-    return articles.find((article) => article.id === id) || null;
-}
 
 export function updateArticle(
+    articles: Article[],
     id: number,
     title: string,
     category: string,
     content: string
 ): Article[] {
     if (!title.trim() || !category.trim() || !content.trim()) {
-        return getArticles();
+        return articles;
     }
-
-    const articles = getArticles();
 
     const updatedList = articles.map((article) =>
         article.id === id
@@ -73,8 +51,6 @@ export function updateArticle(
             }
             : article
     );
-
-    localStorage.setItem("articles", JSON.stringify(updatedList));
     return updatedList;
 }
 

@@ -4,17 +4,17 @@ import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState, FormEvent } from "react";
 import Link from "next/link";
 import {
-  getArticleById,
   updateArticle,
 } from "@/app/lib/articles";
 import { Article } from "@/app/types/article";
+import { useArticles } from "@/app/context/ArticlesContext";
 
 
 
 export default function EditArticlePage() {
+  const { articles, setArticles } = useArticles();
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
-
   const [article, setArticle] = useState<Article | null>(null);
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
@@ -23,21 +23,26 @@ export default function EditArticlePage() {
   useEffect(() => {
     if (!id) return;
 
-    const found = getArticleById(Number(id));
-    if (!found) return;
-    setArticle(found);
-    setTitle(found.title);
-    setCategory(found.category);
-    setContent(found.content);
-  }, [id]);
+    const article =
+      articles.find(a => a.id === Number(id)) || null;
+    if (!article) {
+      setArticle(null);
+      return;
+    }
+    setArticle(article);
+    setTitle(article.title);
+    setCategory(article.category);
+    setContent(article.content);
+  }, [id, articles]);
 
 
   function handleSave(e: FormEvent) {
     e.preventDefault();
     if (!article) return;
 
-    updateArticle(article.id, title, category, content);
-    router.push("/");
+    setArticles(prev =>
+      updateArticle(prev, article.id, title, category, content)
+    ); router.push("/");
   }
 
   if (!article) {
