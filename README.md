@@ -12,8 +12,8 @@ The application implements full CRUD functionality on the client side,
 with all data persisted in the browser using localStorage (no backend).
 Users can create, read, update, delete, search, and filter articles instantly
 without any server interaction.
-Despite its simplicity, the project emphasizes clean separation between UI components
-and data-handling logic to improve readability and maintainability.
+Despite its simplicity, the project emphasizes centralized state management
+using React Context API to improve readability and maintainability.
 
 ---
 
@@ -30,6 +30,11 @@ and data-handling logic to improve readability and maintainability.
 - Search by title (case-insensitive)
 - Dynamic category filter (categories generated from user input)
 - Instant filtering without reload
+
+### 🧠 Global State Management
+- Centralized articles state using React Context API
+- Automatic localStorage synchronization
+- No prop drilling between components
 
 ### 🧭 Global Layout (Navbar)
 - Consistent header across all pages
@@ -52,11 +57,17 @@ and data-handling logic to improve readability and maintainability.
 
 ## 🗂 Project Structure & Architecture
 
-The project follows the **Next.js App Router** pattern with a clear separation of concerns.
+The project follows the **Next.js App Router** pattern with centralized global state management.
 
 - `app/`  
   - Page routes and layouts using the App Router.
-  - Each route handles UI and page-specific state only.
+  - Pages consume global state from ArticlesContext.
+
+- `app/context/ArticlesContext.tsx`
+  - Global state manager for articles.
+  - Loads articles from `localStorage` on app start.
+  - Syncs all changes automatically to `localStorage`.
+  - Acts as a single source of truth for CRUD operations.
 
 - `app/articles/[id]`  
   - Displays full article details.
@@ -65,23 +76,20 @@ The project follows the **Next.js App Router** pattern with a clear separation o
   - Handles article editing with pre-filled form data.
 
 - `lib/articles.ts`  
-  - Centralized business logic for:
-    - Reading articles from `localStorage`
-    - Creating new articles
-    - Updating existing articles
-    - Deleting articles
-  - Keeps storage logic out of UI components.
-
+  - Optional helper functions.
+  - Contains pure utility logic only (no state management).
 - `types/article.ts`  
   - Shared TypeScript type definitions used across the app.
   - Ensures type safety and consistency.
 
 ### Architectural Decisions
 
-- Business logic is extracted into reusable utility functions instead of being duplicated inside pages.
-- UI components focus only on rendering and user interaction.
-- Types are centralized to avoid duplication and improve maintainability.
-- The app avoids unnecessary abstraction to stay simple and readable.
+- Global state is managed using React Context API.
+- ArticlesContext is the single source of truth for all article data.
+- localStorage persistence is handled inside the context layer.
+- Pages and components focus purely on UI and user interaction.
+- TypeScript types are centralized to ensure consistency and safety.
+
 
 This structure improves readability, scalability, and makes the project easy to reason about during maintenance or future expansion.
 
