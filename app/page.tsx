@@ -67,7 +67,7 @@ export default function Home() {
       </div>
 
 
-      <div className="flex flex-col md:flex-row gap-3 md:gap-4 mb-6">
+      <div className="flex flex-col md:flex-row gap-3 md:gap-4">
         <input
           type="text"
           placeholder="Search by title..."
@@ -93,7 +93,7 @@ export default function Home() {
 
       <form
         onSubmit={handleSubmit}
-        className="bg-white rounded-xl shadow-sm p-4 md:p-6 mb-6 space-y-4"
+        className="bg-white rounded-xl shadow-sm p-4 md:p-6 space-y-4"
       >
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -141,7 +141,7 @@ export default function Home() {
         </button>
       </form>
 
-      <div className="mt-6 space-y-4">
+      <div className="space-y-4">
         {filteredArticles.length === 0 ? (
           <p className="text-gray-500">
             No articles yet. Add your first one!
