@@ -18,7 +18,7 @@ export default function ArticleDetailsPage() {
     return (
 
       <div className="space-y-4">
-        <p className="mb-4 text-red-600 font-semibold">
+        <p className="text-red-600 font-semibold">
           Article not found.
         </p>
         <Link href="/" className="text-blue-600 hover:underline">
@@ -35,19 +35,19 @@ export default function ArticleDetailsPage() {
 
       <Link
         href="/"
-        className="text-sm md:text-base text-gray-600 hover:text-gray-800 flex items-center gap-1 mb-4"
+        className="text-sm md:text-base text-gray-600 hover:text-gray-800 flex items-center gap-1"
       >
         <span className="text-lg">⬅</span>
         Back to articles
       </Link>
 
 
-      <article className="bg-white rounded-2xl shadow-sm p-4 md:p-6">
-        <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">
+      <article className="bg-white rounded-2xl shadow-sm p-4 md:p-6 space-y-4">
+        <h1 className="text-2xl md:text-3xl font-bold text-gray-800">
           {article.title}
         </h1>
 
-        <p className="inline-block px-3 py-1 mb-3 rounded-full bg-gray-100 text-xs uppercase tracking-wide text-gray-600">
+        <p className="inline-block px-3 py-1 rounded-full bg-gray-100 text-xs uppercase tracking-wide text-gray-600">
           {article.category || "Uncategorized"}
         </p>
 
@@ -55,7 +55,7 @@ export default function ArticleDetailsPage() {
           {article.content}
         </p>
 
-        <div className="mt-3">
+        <div>
           <Link
             href={`/articles/edit/${article.id}`}
             className="text-sm text-yellow-600 hover:text-yellow-700 font-semibold"

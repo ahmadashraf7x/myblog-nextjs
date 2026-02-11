@@ -49,7 +49,7 @@ export default function EditArticlePage() {
     return (
 
       <div className="space-y-4">
-        <p className="mb-4 text-red-600 font-semibold">
+        <p className="text-red-600 font-semibold">
           Article not found.
         </p>
         <Link href="/" className="text-blue-600 hover:underline">
@@ -65,13 +65,13 @@ export default function EditArticlePage() {
     <div className="space-y-4">
       <Link
         href="/"
-        className="text-sm md:text-base text-gray-600 hover:text-gray-800 flex items-center gap-1 mb-4"
+        className="text-sm md:text-base text-gray-600 hover:text-gray-800 flex items-center gap-1"
       >
         <span className="text-lg">⬅</span>
         Back to articles
       </Link>
 
-      <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
+      <h1 className="text-2xl md:text-3xl font-bold text-gray-800">
         Edit Article
       </h1>
 
